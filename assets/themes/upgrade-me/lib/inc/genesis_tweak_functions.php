@@ -18,14 +18,35 @@ function msdlab_add_apple_touch_icons(){
  * Add pre-header with social and search
  */
 function msdlab_pre_header(){
-    print '<div class="pre-header">
-        <div class="wrap">';
+    print '<div class="pre-header clearfix">
+        <div class="wrap">
+            <div class="pull-right">';
            do_action('msdlab_pre_header');
+           if(get_option('msdsocial_phone')!=''){
+                print '<div class="phone" itemprop="telephone"><i class="fa fa-phone"></i> '.get_option('msdsocial_phone').'</div>';
+           }
+           do_shortcode('[msd-social]');
     print '
+            </div>
         </div>
     </div>';
 }
 
+function msdlab_header_right(){
+    global $wp_registered_sidebars;
+    if( ( isset( $wp_registered_sidebars['pre-header'] ) && is_active_sidebar( 'pre-header' ) )){
+    genesis_markup( array(
+            'html5'   => '<aside %s>',
+            'xhtml'   => '<div class="widget-area header-widget-area">',
+            'context' => 'header-widget-area',
+        ) );
+    dynamic_sidebar( 'pre-header' );
+    genesis_markup( array(
+            'html5' => '</aside>',
+            'xhtml' => '</div>',
+        ) );
+    }
+}
  /**
  * Customize search form input
  */
@@ -57,6 +78,13 @@ function msdlab_search_form($form, $search_text, $button_text, $label){
 
 /*** SIDEBARS ***/
 function msdlab_add_extra_theme_sidebars(){
+    //* Remove the header right widget area
+    unregister_sidebar( 'header-right' );
+    genesis_register_sidebar(array(
+    'name' => 'Pre-header Sidebar',
+    'description' => 'Widget above the logo/nav header',
+    'id' => 'pre-header'
+            ));
     genesis_register_sidebar(array(
     'name' => 'Blog Sidebar',
     'description' => 'Widgets on the Blog Pages',
