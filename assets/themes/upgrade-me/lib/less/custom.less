@@ -1,6 +1,6 @@
 /*Preheader */
 .pre-header{
-  background-color: @black;
+  background-color: transparent;
   line-height: 1rem;
    .wrap{
      nav {
@@ -28,7 +28,7 @@
      }
      .phone{
        display: inline-block;
-       color: @red;
+       color: @blue;
        font-weight: 700;
        font-size: 1.4rem;
        vertical-align: 1rem;
@@ -95,4 +95,12 @@
       }
     }
    }
+ }
+ .content-background{
+   position: absolute;
+   width: 100%;
+   z-index: -400;
+   display: block;
+   height: 300px;
+   .background-image(linear-gradient(to bottom, @bluegrey 0%,@white 100%))
  }

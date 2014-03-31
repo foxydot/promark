@@ -1,5 +1,6 @@
 <?php
 require_once('genesis_tweak_functions.php');
+
 /*** GENERAL ***/
 add_theme_support( 'html5' );//* Add HTML5 markup structure
 add_theme_support( 'genesis-responsive-viewport' );//* Add viewport meta tag for mobile browsers
@@ -32,6 +33,7 @@ add_action('after_setup_theme','msdlab_add_extra_theme_sidebars', 4); //creates 
 add_filter('widget_text', 'do_shortcode');//shortcodes in widgets
 
 /*** CONTENT ***/
+add_action('genesis_after_header','msdlab_add_content_background');
 add_filter('genesis_breadcrumb_args', 'msdlab_breadcrumb_args'); //customize the breadcrumb output
 remove_action('genesis_before_loop', 'genesis_do_breadcrumbs'); //move the breadcrumbs 
 add_action('genesis_before_content_sidebar_wrap', 'genesis_do_breadcrumbs'); //to outside of the loop area

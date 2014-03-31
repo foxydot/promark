@@ -122,6 +122,9 @@ function msdlab_breadcrumb_args($args) {
     $args['sep'] = ' > ';
     return $args;
 }
+function msdlab_add_content_background(){
+    print '<div class="content-background"></div>';
+}
 function msdlab_older_link_text() {
         $olderlink = 'Older Posts &raquo;';
         return $olderlink;

@@ -4,7 +4,7 @@ Site Navigation
 
 .genesis-nav-menu {
   clear: both;
-  color: @white;
+  color: @dkgrey;
   .customsansserif;
   line-height: 1.5;
   width: 100%;
@@ -17,7 +17,7 @@ Site Navigation
 
 .genesis-nav-menu a {
   border: none;
-  color: @white;
+  color: @dkgrey;
   display: block;
   position: relative;
 }
@@ -25,11 +25,11 @@ Site Navigation
 .genesis-nav-menu a:hover,
 .genesis-nav-menu .current-menu-item > a,
 .genesis-nav-menu .sub-menu .current-menu-item > a:hover {
-  color: #333;
+  color: @blue;
 }
 
 .genesis-nav-menu .sub-menu .current-menu-item > a {
-  color: #999;
+  color: @blue;
 }
 
 .genesis-nav-menu > .menu-item > a {
@@ -132,12 +132,12 @@ Site Navigation
       a{
         text-transform: uppercase;
         font-weight: 700;
-        color: @white;
+        color: @dkgrey;
         padding: 6px 20px;
         padding: 0.6rem 2rem;
       }
       .sub-menu{
-        border: 2px solid @ltgrey;
+        border: 2px solid @vltgrey;
         background-color: @white;
         li.menu-item{
           background-color: @white;
@@ -147,29 +147,18 @@ Site Navigation
           }
         }
         li:hover>a{
-          background-color: @ltgrey;
-          color: @red;
+          background-color: @vltgrey;
+          color: @blue;
           text-decoration: none;
         }
       }
     }
     li:hover{
-      background-color: @ltgrey;
+      background-color: @vltgrey;
       a, a:hover{
-        color:@dkgrey;
+        color:@blue;
         text-decoration: none;
         }
-    }
-    li.menu-item.home-btn, li.menu-item.cart-btn{
-      a{
-        background: @red;
-        color: lighten(@red,30%);
-        border-radius: 30px;
-        padding: 1rem 1.4rem;
-      }
-      a:hover{
-        color: @white;
-      }
     }
   }
 }
