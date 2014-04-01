@@ -15,17 +15,13 @@ function msdlab_add_apple_touch_icons(){
     print $ret;
 }
 /**
- * Add pre-header with social and search
+ * Add pre-header
  */
 function msdlab_pre_header(){
     print '<div class="pre-header clearfix">
         <div class="wrap">
             <div class="pull-right">';
            do_action('msdlab_pre_header');
-           if(get_option('msdsocial_phone')!=''){
-                print '<div class="phone" itemprop="telephone"><i class="fa fa-phone"></i> '.get_option('msdsocial_phone').'</div>';
-           }
-           do_shortcode('[msd-social]');
     print '
             </div>
         </div>
@@ -108,12 +104,21 @@ function msdlab_ro_layout_logic() {
         remove_action( 'genesis_after_content_sidebar_wrap', 'genesis_get_sidebar_alt');
         // Add layout specific sidebars
         add_action( 'genesis_before_content_sidebar_wrap', 'genesis_get_sidebar' );
-        add_action( 'genesis_after_content', 'genesis_get_sidebar_alt');
+        add_action( 'genesis_before_content', 'genesis_get_sidebar_alt');
     }
 }
 
 /*** CONTENT ***/
-
+/**
+ * Move titles
+ */
+function msdlab_do_title_area(){
+    print '<div id="page-title-area" class="page-title-area">';
+    print '<div class="wrap">';
+    do_action('msdlab_title_area');
+    print '</div>';
+    print '</div>';
+}
 /**
  * Customize Breadcrumb output
  */
@@ -144,14 +149,20 @@ function msdlab_do_social_footer(){
     if(has_nav_menu('footer_menu')){$footer_menu .= wp_nav_menu( array( 'theme_location' => 'footer_menu','container_class' => 'ftr-menu ftr-links','echo' => FALSE ) );}
     
     if($msd_social){
-        $address = '<span itemprop="name">'.$msd_social->get_bizname().'</span> | <span itemprop="streetAddress">'.get_option('msdsocial_street').'</span>, <span itemprop="streetAddress">'.get_option('msdsocial_street2').'</span> | <span itemprop="addressLocality">'.get_option('msdsocial_city').'</span>, <span itemprop="addressRegion">'.get_option('msdsocial_state').'</span> <span itemprop="postalCode">'.get_option('msdsocial_zip').'</span> | '.$msd_social->get_digits();
-        $copyright .= '&copy; Copyright '.date('Y').' '.$msd_social->get_bizname().' &middot; All Rights Reserved';
+        ob_start();
+        do_shortcode('[msd-social]');
+        $social = ob_get_contents();
+        ob_end_clean();
+        $address = '<div class="address"><span itemprop="streetAddress">'.get_option('msdsocial_street').'</span> &bullet; <span itemprop="addressLocality">'.get_option('msdsocial_city').'</span> &bullet; <span itemprop="addressRegion">'.get_option('msdsocial_state').'</span> &bullet; <span itemprop="postalCode">'.get_option('msdsocial_zip').'</span></div>';
+        $phone = '<div class="phone pull-right" itemprop="telephone"><i class="fa fa-phone"></i> '.get_option('msdsocial_phone').'</div>';
+        $copyright .= '<div class="copyright">&copy; Copyright '.date('Y').' '.$msd_social->get_bizname().' &bullet; All Rights Reserved</div>';
     } else {
-        $copyright .= '&copy; Copyright '.date('Y').' '.get_bloginfo('name').' &middot; All Rights Reserved ';
+        $copyright .= '&copy; Copyright '.date('Y').' '.get_bloginfo('name').' &bullet;; All Rights Reserved ';
     }
-    
-    print '<div id="footer-left" class="footer-left social">'.$address.'</div>';
-    print '<div id="footer-right" class="footer-right menu">'.$footer_menu.'</div>';
+    print '<div class="row">';
+    print '<div id="footer-left" class="footer-left col-md-6 social">'.$social.'</div>';
+    print '<div id="footer-right" class="footer-right col-md-6 menu">'.$phone.$copyright.$address.'</div>';
+    print '</div>';
 }
 
 

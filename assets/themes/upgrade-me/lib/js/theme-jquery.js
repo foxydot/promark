@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
 		}
 	});
 	// add target="_blank" to all *external* 
-    var internal_urls = Array('truepoint.oc','72.52.131.35','truepointwealth.com','truepointinc.com');
+    var internal_urls = Array('promark.asu','127.0.0.1','promark.msdlab2.com','promarkcpi.com');
     $('a').attr('target',function(){
         var url = $(this).attr('href');
         var target = $(this).attr('target');

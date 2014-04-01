@@ -137,24 +137,30 @@ Site Navigation
         padding: 0.6rem 2rem;
       }
       .sub-menu{
-        border: 2px solid @vltgrey;
-        background-color: @white;
-        li.menu-item{
-          background-color: @white;
+        background-color: @vltgrey;
+        .box-shadow(2px 2px 2px rgba(20,20,20,0.5));
+         li.menu-item{
+          background-color: @vltgrey;
           a{
-            background-color: none;
+            background-color: transparent;
             border: none;
+            text-transform: none;
+            font-weight: 400;
           }
         }
-        li:hover>a{
-          background-color: @vltgrey;
-          color: @blue;
-          text-decoration: none;
+        li:hover{
+          .box-shadow(0 0 0 rgba(0,0,0,0));
+          >a{
+            background-color: @blue;
+            color: @white;
+            text-decoration: none;
+          }
         }
       }
     }
     li:hover{
       background-color: @vltgrey;
+      .box-shadow(2px 2px 2px rgba(20,20,20,0.5));
       a, a:hover{
         color:@blue;
         text-decoration: none;

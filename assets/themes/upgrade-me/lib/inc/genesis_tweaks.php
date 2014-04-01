@@ -1,6 +1,14 @@
 <?php
 require_once('genesis_tweak_functions.php');
-
+//* Add support for structural wraps
+add_theme_support( 'genesis-structural-wraps', array(
+    'header',
+    'nav',
+    'subnav',
+    'site-inner',
+    'footer-widgets',
+    'footer'
+) );
 /*** GENERAL ***/
 add_theme_support( 'html5' );//* Add HTML5 markup structure
 add_theme_support( 'genesis-responsive-viewport' );//* Add viewport meta tag for mobile browsers
@@ -34,6 +42,11 @@ add_filter('widget_text', 'do_shortcode');//shortcodes in widgets
 
 /*** CONTENT ***/
 add_action('genesis_after_header','msdlab_add_content_background');
+
+remove_action('genesis_entry_header','genesis_do_post_title'); //move the title out of the content area
+add_action('msdlab_title_area','genesis_do_post_title');
+add_action('genesis_before_content','msdlab_do_title_area');
+
 add_filter('genesis_breadcrumb_args', 'msdlab_breadcrumb_args'); //customize the breadcrumb output
 remove_action('genesis_before_loop', 'genesis_do_breadcrumbs'); //move the breadcrumbs 
 add_action('genesis_before_content_sidebar_wrap', 'genesis_do_breadcrumbs'); //to outside of the loop area

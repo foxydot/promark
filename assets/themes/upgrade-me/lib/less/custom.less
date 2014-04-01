@@ -26,12 +26,58 @@
        display: block;
        vertical-align: 0.8rem;
      }
-     .phone{
+     
+     .search-form{
+      display: inline-block;
+      padding: 1rem 0 1rem 1rem;
+      position: relative;
+      width: 100%;
+      input[type="search"] {
+        padding: 0.5rem;
+      }
+      input[type="submit"] {
+        .fontawesome;
+        font-size: 1.4rem;
+        border: 0;
+        clip: auto;
+        height: auto;
+        margin: 0;
+        padding: 0.5rem;
+        position: absolute;
+        width: auto;
+        background: none;
+        right: 0.5rem;
+        color: @blue;
+      }
+    }
+   }
+ }
+ .content-background{
+   position: absolute;
+   width: 100%;
+   z-index: -400;
+   display: block;
+   height: 300px;
+   .background-image(linear-gradient(to bottom, @bluegrey 0%,@white 100%))
+ }
+.site-footer{
+  .wrap{
+    .footer-left,
+    .footer-right{
+      padding: 2em 0;
+    }
+    .footer-right{
+      text-align: right;
+      .address,.copyright{
+        font-size: 1rem;
+      }
+    }
+  .phone{
        display: inline-block;
-       color: @blue;
        font-weight: 700;
        font-size: 1.4rem;
        vertical-align: 1rem;
+       padding: 1rem;
      }
      .social-media{
        position: relative;
@@ -71,36 +117,12 @@
        a.li{
          background-color:@linkedin-blue;
        }
+       a.gl{
+         background-color: @googleplus-red;
+       }
+       a.st{
+         background-color: @sharethis-green;
+       }
      }    
-     .search-form{
-      display: inline-block;
-      padding: 1rem 0 1rem 1rem;
-      position: relative;
-      input[type="search"] {
-        padding: 0.5rem;
-      }
-      input[type="submit"] {
-        .fontawesome;
-        font-size: 1.4rem;
-        border: 0;
-        clip: auto;
-        height: auto;
-        margin: 0;
-        padding: 0.5rem;
-        position: absolute;
-        width: auto;
-        background: none;
-        right: 0.5rem;
-        color: @medgrey;
-      }
-    }
    }
- }
- .content-background{
-   position: absolute;
-   width: 100%;
-   z-index: -400;
-   display: block;
-   height: 300px;
-   .background-image(linear-gradient(to bottom, @bluegrey 0%,@white 100%))
- }
+}

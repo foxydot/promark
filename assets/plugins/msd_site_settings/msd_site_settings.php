@@ -84,7 +84,7 @@ function social_media($attr){
 			<a href="http://www.twitter.com/<?php echo get_option('msdsocial_twitter_user'); ?>" class="tw fa fa-twitter" title="Follow Us on Twitter!" target="_blank"></a>
 			<?php }?>
 			<?php if(get_option('msdsocial_google_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_google_link'); ?>" class="gl fa fa-googleplus" title="Google+" target="_blank"></a>
+			<a href="<?php echo get_option('msdsocial_google_link'); ?>" class="gl fa fa-google-plus" title="Google+" target="_blank"></a>
 			<?php }?>
 			<?php if(get_option('msdsocial_facebook_link')!=""){ ?>
 			<a href="<?php echo get_option('msdsocial_facebook_link'); ?>" class="fb fa fa-facebook" title="Join Us on Facebook!" target="_blank"></a>
@@ -96,7 +96,7 @@ function social_media($attr){
 			<a href="<?php echo get_option('msdsocial_youtube_link'); ?>" class="yt fa fa-youtube" title="YouTube" target="_blank"></a>
 			<?php }?>
 			<?php if(get_option('msdsocial_sharethis_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_sharethis_link'); ?>" class="st fa fa-sharethis" title="ShareThis" target="_blank"></a>
+			<a href="<?php echo get_option('msdsocial_sharethis_link'); ?>" class="st fa fa-share-this" title="ShareThis" target="_blank"></a>
 			<?php }?>
 			<?php if(get_option('msdsocial_pinterest_link')!=""){ ?>
 			<a href="<?php echo get_option('msdsocial_pinterest_link'); ?>" class="pin fa fa-pinterest" title="Pinterest" target="_blank"></a>
