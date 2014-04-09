@@ -43,9 +43,7 @@ add_filter('widget_text', 'do_shortcode');//shortcodes in widgets
 /*** CONTENT ***/
 add_action('genesis_after_header','msdlab_add_content_background');
 
-remove_action('genesis_entry_header','genesis_do_post_title'); //move the title out of the content area
-add_action('msdlab_title_area','genesis_do_post_title');
-add_action('genesis_before_content','msdlab_do_title_area');
+add_action('genesis_header','msdlab_move_the_title');
 
 add_filter('genesis_breadcrumb_args', 'msdlab_breadcrumb_args'); //customize the breadcrumb output
 remove_action('genesis_before_loop', 'genesis_do_breadcrumbs'); //move the breadcrumbs 
@@ -54,7 +52,6 @@ add_action('genesis_before_content_sidebar_wrap', 'genesis_do_breadcrumbs'); //t
 remove_action( 'genesis_before_post_content', 'genesis_post_info' ); //remove the info (date, posted by,etc.)
 remove_action( 'genesis_after_post_content', 'genesis_post_meta' ); //remove the meta (filed under, tags, etc.)
 
-add_action( 'genesis_before_post', 'msdlab_post_image', 8 ); //add feature image across top of content on *pages*.
 add_filter( 'genesis_next_link_text', 'msdlab_older_link_text', 20);
 add_filter( 'genesis_prev_link_text', 'msdlab_newer_link_text', 20);
 /*** FOOTER ***/

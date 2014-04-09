@@ -126,3 +126,98 @@
      }    
    }
 }
+ //SIDEBAR
+ .sidebar{
+   section.gform_widget{
+    border: 0.5px solid @ltgrey;
+    background: @vltgrey;
+    min-height: 389px;
+    margin-bottom: 56px;
+    margin-bottom: 5.6rem;
+    h4.widgettitle{
+      padding: 1.2rem;
+      font-size: 16px;
+      font-size: 1.6rem;
+      text-align: left;
+      text-transform: uppercase;
+      font-weight: 400;
+      border-bottom: 3px solid @blue;
+      color: @dkgrey;
+      background: @white;
+      margin: 0;
+    }
+    .gform_wrapper{
+      form{
+        margin: 1rem;
+        .gform_body{
+          ul{
+            li{
+              margin: 1rem !important;
+              .gfield_label{
+                display: none;
+              }
+              input[type="email"], input[type="text"], textarea, select, .ginput_complex label {
+                padding: 0.4rem;
+                font-size: 1.2rem;
+                text-transform: uppercase;
+              }
+            }
+          }
+        }
+        .gform_footer{
+          margin: 0 0 2rem 0;
+          padding: 0 1rem;
+          input[type="submit"]{
+            width: 99.2%;
+            padding: 0.6rem;
+          }
+        }
+      }
+    }
+  }
+  .gc-testimonial-widget{
+    padding-bottom: 0;
+    background: @green;
+    #tcycle{
+      margin-bottom: 0;
+    }
+    .testimonial-widget{
+      border: 0;
+      background: none;
+      h5{
+        display: none;
+      }
+      .content{
+        width: 100%;
+        .customserif;
+        color: @white;
+        font-style: italic;
+        p.first-child:before{
+          .customsansserif;
+          font-weight: 700;
+          .pull-left;
+          content: '“ ';
+          font-size: 6rem;
+          opacity: 0.5;
+          width: 24px;
+          margin: 12px 6px -12px 0;
+          font-style: normal;
+          
+        }
+      }
+      .client{
+        padding: 1.6rem;
+        color: @white;
+        .customsansserif;
+        text-transform: uppercase;
+        .name{
+          font-weight: normal;
+          font-style: normal;
+        }
+      }
+    }
+  }
+}
+.gform_wrapper.gf_browser_gecko ul.gform_fields li.gfield div.ginput_complex span.ginput_left select, .gform_wrapper.gf_browser_gecko ul.gform_fields li.gfield div.ginput_complex span.ginput_right select, .gform_wrapper.gf_browser_gecko ul.gform_fields li.gfield select {
+    margin-left: 0px !important;
+}

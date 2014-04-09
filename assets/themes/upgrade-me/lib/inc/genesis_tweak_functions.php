@@ -81,6 +81,11 @@ function msdlab_add_extra_theme_sidebars(){
     'description' => 'Widget above the logo/nav header',
     'id' => 'pre-header'
             ));
+   /* genesis_register_sidebar(array(
+    'name' => 'Page Topper Sidebar',
+    'description' => 'Widget next to featured image',
+    'id' => 'msdlab_page_topper_right'
+            ));*/
     genesis_register_sidebar(array(
     'name' => 'Blog Sidebar',
     'description' => 'Widgets on the Blog Pages',
@@ -109,9 +114,29 @@ function msdlab_ro_layout_logic() {
 }
 
 /*** CONTENT ***/
+function msdlab_page_topper(){
+    if(is_page()){
+        print '<div class="topper-sidebar-wrap row">
+            <div class="col-md-8 col-sm-12">';
+            do_action('msdlab_page_topper_left');
+        print '</div>
+            <div class="col-md-4 col-sm-12">';
+            dynamic_sidebar('msdlab_page_topper_right');
+        print '</div>
+        </div>';
+    }
+}
 /**
  * Move titles
  */
+function msdlab_move_the_title(){
+    if(is_page()){
+        remove_action('genesis_entry_header','genesis_do_post_title'); //move the title out of the content area
+        add_action('msdlab_title_area','msdlab_post_image');
+        add_action('msdlab_title_area','genesis_do_post_title');
+        add_action('genesis_before_content','msdlab_do_title_area',5);
+    }
+}
 function msdlab_do_title_area(){
     print '<div id="page-title-area" class="page-title-area">';
     print '<div class="wrap">';

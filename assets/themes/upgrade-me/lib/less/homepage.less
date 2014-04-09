@@ -1,1 +1,27 @@
 @import 'mixins';
+body{
+  background: @bluegrey url(../img/bkg-homepage.png) repeat-x center bottom;
+  .site-header{
+    background: none;
+  }
+  .nav-primary {
+    ul.menu-primary>li.menu-item>a{
+      color: @white;
+    } 
+    ul.menu-primary>li.menu-item:hover>a{
+      color: @blue;
+    } 
+  }
+  .content-background {
+    display: none;
+  }
+  .site-footer{
+    border-top: 4px solid @white;
+  }
+}
+h1.entry-title{
+  border-bottom: none;
+}
+.header-image .site-title a {
+  background: url(../img/logo-white.png) no-repeat left center;
+}
