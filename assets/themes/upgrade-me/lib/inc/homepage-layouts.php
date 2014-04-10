@@ -70,7 +70,7 @@ function msdlab_callout(){
  */
 function msdlab_homepage_widgets(){
 	print '<div id="homepage-widgets" class="widget-area">';
-	print '<div class="wrap"><div class="row">';
+	print '<div class="wrap container"><div class="row">';
         dynamic_sidebar('homepage-widgets');
   	print '</div></div>';
 	print '</div>';
