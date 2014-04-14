@@ -4,4 +4,6 @@ jQuery(document).ready(function($) {
     var cols = 12/numwidgets;
     $('#homepage-widgets section.widget').addClass('col-sm-'+cols);
     $('#homepage-widgets section.widget').addClass('col-xs-12');
+    
+    $.backstretch(php_data.stylesheet_uri + '/lib/img/bkg-homepage.png');
 });
