@@ -5,5 +5,5 @@ jQuery(document).ready(function($) {
     $('#homepage-widgets section.widget').addClass('col-sm-'+cols);
     $('#homepage-widgets section.widget').addClass('col-xs-12');
     
-    $.backstretch(php_data.stylesheet_uri + '/lib/img/bkg-homepage.png');
+    $.backstretch(php_data.stylesheet_uri + '/lib/img/bkg-homepage.jpg');
 });
