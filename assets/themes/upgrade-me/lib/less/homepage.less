@@ -33,30 +33,38 @@ h1.entry-title{
 }
 
 #homepage-widgets{
+  margin-bottom: 2rem;
   .widget{
-    .widget-content{
-      min-height: 168px;
-      margin-bottom: 2rem;
+    .widget-wrap{
       background-position: top center;
       background-repeat: no-repeat;
-      .link{
-        width: 100%;
-        .button {
-          width: 220px;
-          margin: 120px 17px 0;
-          font-size: 1.2rem;
-          border-radius: 0;
-          padding: 0.8rem 0;
-          text-align: center;
+      height: 100%;
+      .bw{
+        background-position: top center;
+        background-repeat: no-repeat;
+        min-height: 168px;
+        overflow: hidden;
+        position: relative;
+        .link{
+          width: 100%;
+          .button {
+            width: 220px;
+            margin: 120px 17px 0;
+            font-size: 1.2rem;
+            border-radius: 0;
+            padding: 0.8rem 0;
+            text-align: center;
+          }
         }
-      }
+       }
     }
   }
 }
+
 #hp-callout{
   .widget{
     background: @dkblue;
-    margin: 0 25px;
+    margin: 0;
     .testimonial-widget{
       h5{display: none;}
       .content{

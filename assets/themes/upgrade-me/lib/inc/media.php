@@ -3,7 +3,8 @@
  * Add new image sizes
  */
 add_image_size('post-thumb', 225, 160, TRUE);
-add_image_size( 'post-image', 730, 390, TRUE ); //image to float at the top of the post. Reversed Out does these a lot.
+add_image_size('post-image', 730, 390, TRUE ); //image to float at the top of the post. Reversed Out does these a lot.
+add_image_size('homepage-widget',255,168, TRUE);
 
 /* Display a custom favicon */
 add_filter( 'genesis_pre_load_favicon', 'msdlab_favicon_filter' );

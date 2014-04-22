@@ -77,6 +77,35 @@ function msdlab_homepage_widgets(){
 }
 
 /**
+ * Custom widget area
+ */
+function upgrademe_homepage_widgets(){
+    global $features_metabox;
+    print '<div id="homepage-widgets" class="widget-area">';
+    print '<div class="wrap">
+    <div class="row">';
+    $i = 0;
+    while($features_metabox->have_fields('features')):
+        print '<section class="col-md-3 col-sm-12 widget">
+            <div class="widget-wrap" style="background-image:url('.$features_metabox->get_the_value('color_image').')">
+                <div class="bw" style="background-image:url('.$features_metabox->get_the_value('bw_image').')">
+                    <div class="link">
+                    <a class="button" href="'.$features_metabox->get_the_value('url').'"">
+                        '.$features_metabox->get_the_value('title').' >
+                    </a>
+                    <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </section>';
+    endwhile;
+    print '</div>
+    </div>';
+    print '</div>';
+}
+ 
+ 
+/**
  * Create a long scrollie page with child pages of homepage.
  * Uses featured image for background of each wrap section.
  */
@@ -173,3 +202,42 @@ function register_taxonomy_scrollie() {
 
     register_taxonomy( 'msdlab_scrollie', array('page'), $args );
 }   
+
+
+
+if(!class_exists('WPAlchemy_MetaBox')){
+    include_once (WP_CONTENT_DIR.'/wpalchemy/MetaBox.php');
+}
+global $wpalchemy_media_access;
+if(!class_exists('WPAlchemy_MediaAccess')){
+    include_once (WP_CONTENT_DIR.'/wpalchemy/MediaAccess.php');
+}
+$wpalchemy_media_access = new WPAlchemy_MediaAccess();
+add_action('init','add_homepage_metaboxes');
+add_action('admin_footer','homepage_footer_hook');
+//add_action( 'admin_print_scripts', 'homepage_metabox_styles' );
+
+function add_homepage_metaboxes(){
+    global $post,$features_metabox;
+    $features_metabox = new WPAlchemy_MetaBox(array
+    (
+        'id' => '_homepage_features',
+        'title' => 'Home Page Features',
+        'types' => array('page'),
+        'context' => 'normal', // same as above, defaults to "normal"
+        'priority' => 'high', // same as above, defaults to "high"
+        'template' => get_stylesheet_directory() . '/lib/template/metabox-features.php',
+        'autosave' => TRUE,
+        'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
+        'prefix' => '_msdlab_', // defaults to NULL
+        'include_template' => 'front-page.php',
+    ));
+}
+
+function homepage_footer_hook()
+{
+    ?><script type="text/javascript">
+        jQuery('#postdivrich').after(jQuery('#_homepage_features_metabox'));
+    </script><?php
+}
+/* eof */
