@@ -179,7 +179,7 @@ function msdlab_do_social_footer(){
         $social = ob_get_contents();
         ob_end_clean();
         $address = '<div class="address"><span itemprop="streetAddress">'.get_option('msdsocial_street').'</span> &bullet; <span itemprop="addressLocality">'.get_option('msdsocial_city').'</span> &bullet; <span itemprop="addressRegion">'.get_option('msdsocial_state').'</span> &bullet; <span itemprop="postalCode">'.get_option('msdsocial_zip').'</span></div>';
-        $phone = '<div class="phone pull-right" itemprop="telephone"><i class="fa fa-phone"></i> '.get_option('msdsocial_phone').'</div>';
+        $phone = '<div class="phone pull-right" itemprop="telephone"><i class="fa fa-phone"></i> '.get_option('msdsocial_phone').'<br /><i class="fa fa-phone"></i> '.get_option('msdsocial_tollfree').'</div>';
         $copyright .= '<div class="copyright">&copy; Copyright '.date('Y').' '.$msd_social->get_bizname().' &bullet; All Rights Reserved</div>';
     } else {
         $copyright .= '&copy; Copyright '.date('Y').' '.get_bloginfo('name').' &bullet;; All Rights Reserved ';
