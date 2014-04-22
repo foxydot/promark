@@ -3,10 +3,11 @@ add_shortcode('button','msdlab_button_function');
 function msdlab_button_function($atts, $content = null){	
 	extract( shortcode_atts( array(
       'url' => null,
+      'class' => false,
 	  'target' => '_self'
       ), $atts ) );
 	$ret = '<div class="button-wrapper">
-<a class="button" href="'.$url.'" target="'.$target.'">'.remove_wpautop($content).'</a>
+<a class="button '.$class.'" href="'.$url.'" target="'.$target.'">'.remove_wpautop($content).'</a>
 </div>';
 	return $ret;
 }
