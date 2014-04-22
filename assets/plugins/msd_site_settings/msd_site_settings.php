@@ -22,8 +22,8 @@ class MSDSocial{
 		 * Pull in some stuff from other files
 		 */
 		$this->requireDir($this->the_path . '/inc');
-		wp_enqueue_style('msd-social-style',$this->the_url.'css/style.css');
-		wp_enqueue_style('msd-social-style-'.$this->icon_size,$this->the_url.'css/style'.$this->icon_size.'.css');
+		//wp_enqueue_style('msd-social-style',$this->the_url.'css/style.css');
+		//wp_enqueue_style('msd-social-style-'.$this->icon_size,$this->the_url.'css/style'.$this->icon_size.'.css');
 		add_shortcode('msd-address',array(&$this,'get_address'));
 		add_shortcode('msd-bizname',array(&$this,'get_bizname'));
 		add_shortcode('msd-copyright',array(&$this,'get_copyright'));
@@ -38,29 +38,84 @@ function get_bizname(){
 }
 function get_address(){
 	if((get_option('msdsocial_street')!='') || (get_option('msdsocial_city')!='') || (get_option('msdsocial_state')!='') || (get_option('msdsocial_zip')!='')) {
-		$ret = '<address>';
-			$ret .= (get_option('msdsocial_street')!='')?get_option('msdsocial_street').' ':'';
-			$ret .= (get_option('msdsocial_street2')!='')?get_option('msdsocial_street2').' ':'';
-			$ret .= (get_option('msdsocial_city')!='')?get_option('msdsocial_city').', ':'';
-			$ret .= (get_option('msdsocial_state')!='')?get_option('msdsocial_state').' ':'';
-			$ret .= (get_option('msdsocial_zip')!='')?get_option('msdsocial_zip').' ':'';
+		$ret = '<address itemscope itemtype="http://schema.org/LocalBusiness">';
+			$ret .= (get_option('msdsocial_street')!='')?'<span itemprop="streetAddress">'.get_option('msdsocial_street').'</span> ':'';
+			$ret .= (get_option('msdsocial_street2')!='')?'<span itemprop="streetAddress">'.get_option('msdsocial_street2').'</span> ':'';
+			$ret .= (get_option('msdsocial_city')!='')?'<span itemprop="addressLocality">'.get_option('msdsocial_city').'</span>, ':'';
+			$ret .= (get_option('msdsocial_state')!='')?'<span itemprop="addressRegion">'.get_option('msdsocial_state').'</span> ':'';
+			$ret .= (get_option('msdsocial_zip')!='')?'<span itemprop="postalCode">'.get_option('msdsocial_zip').'</span> ':'';
 		$ret .= '</address>';
 		return $ret;
 		} else {
 			return false;
 		} 
 }
-function get_digits(){
-		if((get_option('msdsocial_phone')!='') || (get_option('msdsocial_fax')!='')) {
-		$ret .= '<address>';
-			$ret .= (get_option('msdsocial_phone')!='')?'Phone: '.get_option('msdsocial_phone').' ':'';
-			$ret .= (get_option('msdsocial_phone')!='') && (get_option('msdsocial_fax')!='')?' | ':'';
-			$ret .= (get_option('msdsocial_fax')!='')?'Fax: '.get_option('msdsocial_fax').' ':'';
-		$ret .= '</address>';
+
+function get_digits($dowrap = TRUE,$sep = " | "){
+        $sepsize = count($sep);
+		if((get_option('msdsocial_phone')!='') || (get_option('msdsocial_tollfree')!='') || (get_option('msdsocial_fax')!='')) {
+		    if((get_option('msdsocial_tracking_phone')!='')){
+		        if(wp_is_mobile()){
+		          $phone .= 'Phone: <a href="tel:+1'.get_option('msdsocial_tracking_phone').'">'.get_option('msdsocial_tracking_phone').'</a> ';
+		        } else {
+		          $phone .= 'Phone: <span>'.get_option('msdsocial_tracking_phone').'</span> ';
+		        }
+		      $phone .= '<span itemprop="telephone" style="display: none;">'.get_option('msdsocial_phone').'</span> ';
+		    } else {
+		        if(wp_is_mobile()){
+		          $phone .= (get_option('msdsocial_phone')!='')?'Phone: <a href="tel:+1'.get_option('msdsocial_phone').'" itemprop="telephone">'.get_option('msdsocial_phone').'</a> ':'';
+		        } else {
+                  $phone .= (get_option('msdsocial_phone')!='')?'Phone: <span itemprop="telephone">'.get_option('msdsocial_phone').'</span> ':'';
+		        }
+		    }
+            if((get_option('msdsocial_tracking_tollfree')!='')){
+                if(wp_is_mobile()){
+                  $tollfree .= 'Phone: <a href="tel:+1'.get_option('msdsocial_tracking_tollfree').'">'.get_option('msdsocial_tracking_tollfree').'</a> ';
+                } else {
+                  $tollfree .= 'Phone: <span>'.get_option('msdsocial_tracking_tollfree').'</span> ';
+                }
+              $tollfree .= '<span itemprop="telephone" style="display: none;">'.get_option('msdsocial_tollfree').'</span> ';
+            } else {
+                if(wp_is_mobile()){
+                  $tollfree .= (get_option('msdsocial_tollfree')!='')?'Phone: <a href="tel:+1'.get_option('msdsocial_tollfree').'" itemprop="telephone">'.get_option('msdsocial_tollfree').'</a> ':'';
+                } else {
+                  $tollfree .= (get_option('msdsocial_tollfree')!='')?'Phone: <span itemprop="telephone">'.get_option('msdsocial_tollfree').'</span> ':'';
+                }
+            }
+            $fax = (get_option('msdsocial_fax')!='')?'Fax: <span itemprop="faxNumber">'.get_option('msdsocial_fax').'</span> ':'';
+            $ret = $phone;
+            $ret .= ($phone!='' && $tollfree!='')?$sep:'';
+            $ret .= $tollfree;
+            $ret .= (!strpos($ret,$sep,$sepsize))?$sep:'';
+            $ret .= $fax;
+ 		  if($dowrap){$ret = '<address itemscope itemtype="http://schema.org/LocalBusiness">'.$ret.'</address>';}
 		return $ret;
 		} else {
 			return false;
 		} 
+}
+
+function get_phone($dowrap = TRUE){
+        if((get_option('msdsocial_phone')!='')) {
+            if((get_option('msdsocial_tracking_phone')!='')){
+                if(wp_is_mobile()){
+                  $ret .= '<a href="tel:+1'.get_option('msdsocial_tracking_phone').'">'.get_option('msdsocial_tracking_phone').'</a> ';
+                } else {
+                  $ret .= '<span>'.get_option('msdsocial_tracking_phone').'</span> ';
+                }
+              $ret .= '<span itemprop="telephone" style="display: none;">'.get_option('msdsocial_phone').'</span> ';
+            } else {
+                if(wp_is_mobile()){
+                  $ret .= (get_option('msdsocial_phone')!='')?'<a href="tel:+1'.get_option('msdsocial_phone').'" itemprop="telephone">'.get_option('msdsocial_phone').'</a> ':'';
+                } else {
+                  $ret .= (get_option('msdsocial_phone')!='')?'<span itemprop="telephone">'.get_option('msdsocial_phone').'</span> ':'';
+                }
+            }
+          if($dowrap){$ret = '<address itemscope itemtype="http://schema.org/LocalBusiness">'.$ret.'</address>';}
+        return $ret;
+        } else {
+            return false;
+        } 
 }
 //create copyright message
 function copyright($address = TRUE){
@@ -75,37 +130,37 @@ function copyright($address = TRUE){
 
 
 function social_media($attr){
-	?>
-	<div id="social-media" class="social-media">
-			<?php if(get_option('msdsocial_linkedin_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_linkedin_link'); ?>" class="li fa fa-linkedin" title="LinkedIn" target="_blank"></a>
-			<?php }?>
-			<?php if(get_option('msdsocial_twitter_user')!=""){ ?>
-			<a href="http://www.twitter.com/<?php echo get_option('msdsocial_twitter_user'); ?>" class="tw fa fa-twitter" title="Follow Us on Twitter!" target="_blank"></a>
-			<?php }?>
-			<?php if(get_option('msdsocial_google_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_google_link'); ?>" class="gl fa fa-google-plus" title="Google+" target="_blank"></a>
-			<?php }?>
-			<?php if(get_option('msdsocial_facebook_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_facebook_link'); ?>" class="fb fa fa-facebook" title="Join Us on Facebook!" target="_blank"></a>
-			<?php }?>
-			<?php if(get_option('msdsocial_flickr_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_flickr_link'); ?>" class="fl fa fa-flickr" title="Flickr" target="_blank"></a>
-			<?php }?>
-			<?php if(get_option('msdsocial_youtube_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_youtube_link'); ?>" class="yt fa fa-youtube" title="YouTube" target="_blank"></a>
-			<?php }?>
-			<?php if(get_option('msdsocial_sharethis_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_sharethis_link'); ?>" class="st fa fa-share-this" title="ShareThis" target="_blank"></a>
-			<?php }?>
-			<?php if(get_option('msdsocial_pinterest_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_pinterest_link'); ?>" class="pin fa fa-pinterest" title="Pinterest" target="_blank"></a>
-			<?php }?>
-			<?php if(get_option('msdsocial_show_feed')!=""){ ?>
-			<a href="<?php bloginfo('rss2_url'); ?>" class="rss fa fa-rss" title="RSS Feed" target="_blank"></a>
-			<?php }?>
-		</div>
-		<?php 
+    ?>
+    <div id="social-media" class="social-media">
+            <?php if(get_option('msdsocial_linkedin_link')!=""){ ?>
+            <a href="<?php echo get_option('msdsocial_linkedin_link'); ?>" class="li fa fa-linkedin" title="LinkedIn" target="_blank"></a>
+            <?php }?>
+            <?php if(get_option('msdsocial_twitter_user')!=""){ ?>
+            <a href="http://www.twitter.com/<?php echo get_option('msdsocial_twitter_user'); ?>" class="tw fa fa-twitter" title="Follow Us on Twitter!" target="_blank"></a>
+            <?php }?>
+            <?php if(get_option('msdsocial_google_link')!=""){ ?>
+            <a href="<?php echo get_option('msdsocial_google_link'); ?>" class="gl fa fa-google-plus" title="Google+" target="_blank"></a>
+            <?php }?>
+            <?php if(get_option('msdsocial_facebook_link')!=""){ ?>
+            <a href="<?php echo get_option('msdsocial_facebook_link'); ?>" class="fb fa fa-facebook" title="Join Us on Facebook!" target="_blank"></a>
+            <?php }?>
+            <?php if(get_option('msdsocial_flickr_link')!=""){ ?>
+            <a href="<?php echo get_option('msdsocial_flickr_link'); ?>" class="fl fa fa-flickr" title="Flickr" target="_blank"></a>
+            <?php }?>
+            <?php if(get_option('msdsocial_youtube_link')!=""){ ?>
+            <a href="<?php echo get_option('msdsocial_youtube_link'); ?>" class="yt fa fa-youtube" title="YouTube" target="_blank"></a>
+            <?php }?>
+            <?php if(get_option('msdsocial_sharethis_link')!=""){ ?>
+            <a href="<?php echo get_option('msdsocial_sharethis_link'); ?>" class="st fa fa-share-this" title="ShareThis" target="_blank"></a>
+            <?php }?>
+            <?php if(get_option('msdsocial_pinterest_link')!=""){ ?>
+            <a href="<?php echo get_option('msdsocial_pinterest_link'); ?>" class="pin fa fa-pinterest" title="Pinterest" target="_blank"></a>
+            <?php }?>
+            <?php if(get_option('msdsocial_show_feed')!=""){ ?>
+            <a href="<?php bloginfo('rss2_url'); ?>" class="rss fa fa-rss" title="RSS Feed" target="_blank"></a>
+            <?php }?>
+        </div>
+        <?php 
 }
 
 function requireDir($dir){
