@@ -6,9 +6,9 @@ function msdlab_button_function($atts, $content = null){
       'class' => false,
 	  'target' => '_self'
       ), $atts ) );
-	$ret = '<div class="button-wrapper">
+	$ret = '
 <a class="button '.$class.'" href="'.$url.'" target="'.$target.'">'.remove_wpautop($content).'</a>
-</div>';
+';
 	return $ret;
 }
 add_shortcode('hero','msdlab_landing_page_hero');
