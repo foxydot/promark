@@ -135,13 +135,12 @@
    }
 }
  //SIDEBAR
- .sidebar{
-   section.gform_widget{
-    border: 0.5px solid @ltgrey;
-    background: @vltgrey;
-    min-height: 389px;
+ .sidebar-primary{
+   section.widget{
     margin-bottom: 56px;
     margin-bottom: 5.6rem;
+    border: 0.5px solid @ltgrey;
+    background: @vltgrey;
     h4.widgettitle{
       padding: 1.2rem;
       font-size: 16px;
@@ -154,6 +153,12 @@
       background: @white;
       margin: 0;
     }
+    ul{
+      margin: 1.6rem;
+    }
+  }
+  section.gform_widget{
+    min-height: 389px;
     .gform_wrapper{
       form{
         margin: 1rem;
@@ -183,7 +188,7 @@
       }
     }
   }
-  .gc-testimonial-widget{
+  section.widget.gc-testimonial-widget{
     padding-bottom: 0;
     background: @green;
     #tcycle{

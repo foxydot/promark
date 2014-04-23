@@ -97,6 +97,17 @@ function msdlab_do_blog_sidebar(){
         dynamic_sidebar('blog');
     }
 }
+
+/** Force full width layout */
+function msdlab_do_layout( $opt ) {
+    if( is_page() ){
+        $opt = 'sidebar-content-sidebar'; // You can change this to any Genesis layout
+    } elseif ( is_single() ) { // Modify the conditions to apply the layout to here
+        $opt = 'content-sidebar'; // You can change this to any Genesis layout
+    }
+    return $opt;
+}
+
 /**
  * Reversed out style SCS
  * This ensures that the primary sidebar is always to the left.

@@ -20,7 +20,22 @@ function msdlab_bootstrap_breadcrumb( $attributes ){
 }
 
 function msdlab_bootstrap_content_sidebar_wrap( $attributes ){
-    $attributes['class'] .= ' col-md-8 col-sm-12';
+    $layout = genesis_site_layout();
+    $template = get_page_template();
+    switch($layout){
+        case 'content-sidebar':
+        case 'sidebar-content':
+            $attributes['class'] .= ' col-md-12';
+            break;
+        case 'content-sidebar-sidebar':
+        case 'sidebar-sidebar-content':
+        case 'sidebar-content-sidebar':
+            $attributes['class'] .= ' col-md-8 col-sm-12';
+            break;
+        case 'full-width-content':
+            $attributes['class'] .= ' col-md-12';
+            break;
+    }
     return $attributes;
 }
 

@@ -36,6 +36,8 @@ remove_action( 'genesis_after_header', 'genesis_do_nav' );
 add_action( 'genesis_header', 'genesis_do_nav' );
 
 /*** SIDEBARS ***/
+add_filter( 'genesis_pre_get_option_site_layout', 'msdlab_do_layout' );
+
 add_action('genesis_before', 'msdlab_ro_layout_logic'); //This ensures that the primary sidebar is always to the left.
 add_action('after_setup_theme','msdlab_add_extra_theme_sidebars', 4); //creates widget areas for a hero and flexible widget area
 add_filter('widget_text', 'do_shortcode');//shortcodes in widgets
