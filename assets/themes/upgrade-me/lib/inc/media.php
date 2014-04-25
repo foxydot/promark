@@ -5,6 +5,7 @@
 add_image_size('post-thumb', 225, 160, TRUE);
 add_image_size('post-image', 730, 390, TRUE ); //image to float at the top of the post. Reversed Out does these a lot.
 add_image_size('homepage-widget',255,168, TRUE);
+add_image_size('headshot', 144, 202, array('top','center'));
 
 /* Display a custom favicon */
 add_filter( 'genesis_pre_load_favicon', 'msdlab_favicon_filter' );
@@ -17,13 +18,21 @@ function msdlab_favicon_filter( $favicon_url ) {
 function msdlab_post_image() {
     global $post;
     //setup thumbnail image args to be used with genesis_get_image();
-    $size = 'post-image'; // Change this to whatever add_image_size you want
-    $default_attr = array(
-            'class' => "alignnone featured-image attachment-$size $size",
-            'alt'   => $post->post_title,
-            'title' => $post->post_title,
-    );
-
+    if(is_cpt('team_member')){
+        $size = 'headshot'; // Change this to whatever add_image_size you want
+        $default_attr = array(
+                'class' => "alignleft featured-image attachment-$size $size",
+                'alt'   => $post->post_title,
+                'title' => $post->post_title,
+        );
+    } else {
+        $size = 'post-image'; // Change this to whatever add_image_size you want
+        $default_attr = array(
+                'class' => "alignnone featured-image attachment-$size $size",
+                'alt'   => $post->post_title,
+                'title' => $post->post_title,
+        );
+    }
     // This is the most important part!  Checks to see if the post has a Post Thumbnail assigned to it. You can delete the if conditional if you want and assume that there will always be a thumbnail
     if ( has_post_thumbnail() ) {
         print genesis_get_image( array( 'size' => $size, 'attr' => $default_attr ) );

@@ -146,6 +146,8 @@ function msdlab_move_the_title(){
         add_action('msdlab_title_area','msdlab_post_image');
         add_action('msdlab_title_area','genesis_do_post_title');
         add_action('genesis_before_content','msdlab_do_title_area',5);
+    } elseif(is_cpt('team_member')) {
+        add_action('genesis_entry_content','msdlab_post_image',1);
     } else {
         add_action('genesis_entry_header','msdlab_post_image',1);
     }

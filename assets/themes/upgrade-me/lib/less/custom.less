@@ -251,3 +251,29 @@
     }
   }
 }
+
+#team-members{
+  .make-row();
+  .team-member{
+    .headshot{
+      img{
+        margin: 0;
+      }
+    }
+    .info{
+      margin: 1rem;
+      min-height: 50px;
+      h4,h5{
+        font-size: 1.2rem;
+      }
+    }
+    .make-md-column(4);
+  }
+}
+
+ul.team-member-contact-info{
+  list-style: none outside none;
+  li{
+    display: inline-block;
+  }
+}

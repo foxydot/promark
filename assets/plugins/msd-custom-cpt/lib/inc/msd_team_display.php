@@ -51,7 +51,9 @@ if (!class_exists('MSDTeamDisplay')) {
             $posts = get_posts($args);
             $i = 0;
             foreach($posts AS $post){
-                $posts[$i]->lastname = get_post_meta($post->ID,'_team_member__team_last_name',TRUE);
+                $lastname = get_post_meta($post->ID,'_team_member__team_last_name',TRUE);
+                $lastname = $lastname!=''?ucfirst($lastname):'zzz';
+                $posts[$i]->lastname = $lastname;
                 $i++;
             }
             usort($posts,array(&$this,'sort_by_lastname'));
@@ -176,12 +178,12 @@ if (!class_exists('MSDTeamDisplay')) {
             <ul class="team-member-contact-info">
                 <?php $contact_info->the_field('_team_phone'); ?>
                 <?php if($contact_info->get_the_value() != ''){ ?>
-                    <li class="phone"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-phone fa-stack-1x fa-inverse"></i></span> <?php //print msd_str_fmt($contact_info->get_the_value(),'phone'); ?></li>
+                    <li class="phone"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-phone fa-stack-1x fa-inverse"></i></span> <?php print msd_str_fmt($contact_info->get_the_value(),'phone'); ?></li>
                 <?php } ?>
                 
                 <?php $contact_info->the_field('_team_mobile'); ?>
                 <?php if($contact_info->get_the_value() != ''){ ?>
-                    <li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-mobile-phone fa-stack-1x fa-inverse"></i></span> <?php //print msd_str_fmt($contact_info->get_the_value(),'phone'); ?></li>
+                    <li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-mobile-phone fa-stack-1x fa-inverse"></i></span> <?php print msd_str_fmt($contact_info->get_the_value(),'phone'); ?></li>
                 <?php } ?>
                 
                 <?php $contact_info->the_field('_team_linked_in'); ?>
@@ -196,7 +198,7 @@ if (!class_exists('MSDTeamDisplay')) {
                 
                 <?php $contact_info->the_field('_team_email'); ?>
                 <?php if($contact_info->get_the_value() != ''){ ?>
-                    <li class="email"><a href="mailto:<?php print antispambot($contact_info->get_the_value());?>" class="email"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span> <?php //print msd_str_fmt($contact_info->get_the_value(),'email'); ?></a></li>
+                    <li class="email"><a href="mailto:<?php print antispambot($contact_info->get_the_value());?>" class="email"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span> <?php print msd_str_fmt($contact_info->get_the_value(),'email'); ?></a></li>
                 <?php } ?>
             </ul>
             <?php
