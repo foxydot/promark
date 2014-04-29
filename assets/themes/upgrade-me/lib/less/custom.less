@@ -277,3 +277,45 @@ ul.team-member-contact-info{
     display: inline-block;
   }
 }
+.sidebar.widget-area .widget_advanced_menu {
+  .menu {
+    padding-left: 0;
+    a:hover {text-decoration: none;}
+    >li{ display: none;}
+    >li.current-menu-ancestor, >li.current-menu-item {
+      display: block;
+      font-weight: bold;
+      font-size: 1.2em;
+      text-transform: uppercase;
+      a{
+        color: @blue;
+        display: block;
+      }
+      ul{
+      padding: 0;
+        li {
+        font-weight: normal;
+        a {
+          border: none;
+          font-size: .8em;
+          color: @blue;
+          text-transform: none;
+          padding-left: 6px;
+          }
+        ul{
+          padding: 0;
+          border-top: 1px solid @medgrey;
+          li{
+            a{
+          padding-left: 12px;}
+          }
+          li.last-child {border-bottom: none;}
+          }
+        }
+        li:hover,li.current-menu-item {
+          background: @white;
+        }
+      }
+    }
+  }
+}
