@@ -6428,6 +6428,11 @@ Content Area
   margin-bottom: 40px;
   margin-bottom: 4rem;
 }
+.entry-content h2 {
+  color: #f07b05;
+  font-size: 2.4rem;
+  font-weight: 400;
+}
 .entry-content h3,
 .entry-content h4 {
   margin-bottom: 0;
@@ -6899,7 +6904,7 @@ Site Footer
 }
 .sidebar-primary section.widget.gc-testimonial-widget {
   padding-bottom: 0;
-  background: #c3d600;
+  background: #625bc3;
 }
 .sidebar-primary section.widget.gc-testimonial-widget #tcycle {
   margin-bottom: 0;
