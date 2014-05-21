@@ -91,7 +91,7 @@ function upgrademe_homepage_widgets(){
                 <div class="bw" style="background-image:url('.$features_metabox->get_the_value('bw_image').')">
                     <div class="link">
                     <a class="button" href="'.$features_metabox->get_the_value('url').'"">
-                        '.$features_metabox->get_the_value('title').' >
+                        '.$features_metabox->get_the_value('title').'
                     </a>
                     <div class="clear"></div>
                     </div>
