@@ -114,7 +114,7 @@ function msdlab_do_layout( $opt ) {
  */
 function msdlab_ro_layout_logic() {
     $site_layout = genesis_site_layout();    
-    if ( $site_layout == 'sidebar-content-sidebar' ) {
+    if ( $site_layout == 'sidebar-content-sidebar' || $site_layout == 'content-sidebar' ) {
         // Remove default genesis sidebars
         remove_action( 'genesis_after_content', 'genesis_get_sidebar' );
         remove_action( 'genesis_after_content_sidebar_wrap', 'genesis_get_sidebar_alt');
