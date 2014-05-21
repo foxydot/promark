@@ -31,6 +31,10 @@ jQuery(document).ready(function($) {
             return '_blank';
         }
     });
+    anchor_footer();
+});
+jQuery( window ).resize(function($) {
+    anchor_footer();
 });
 function strripos(haystack, needle, offset) {
   //  discuss at: http://phpjs.org/functions/strripos/
@@ -60,4 +64,13 @@ function strripos(haystack, needle, offset) {
       .lastIndexOf(needle);
   }
   return i >= 0 ? i : false;
+}
+function anchor_footer(){
+    var w = jQuery( window ).height();
+    if(w > 820){
+        jQuery('.site-footer').css('position','fixed').css('bottom',0);
+    } else {
+        jQuery('.site-footer').css('position','static').css('bottom','auto');
+    }
+    return true;
 }
