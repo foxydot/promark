@@ -84,9 +84,9 @@ function upgrademe_homepage_widgets(){
     print '<div id="homepage-widgets" class="widget-area">';
     print '<div class="wrap">
     <div class="row">';
-    $i = 0;
+    $i = $hamburger = 0;
     while($features_metabox->have_fields('features')):
-        print '<section class="col-md-3 col-sm-12 widget">
+        print '<section class="col-sm-3 hidden-xs widget">
             <div class="widget-wrap" style="background-image:url('.$features_metabox->get_the_value('color_image').')">
                 <div class="bw" style="background-image:url('.$features_metabox->get_the_value('bw_image').')">
                     <div class="link">
@@ -98,7 +98,12 @@ function upgrademe_homepage_widgets(){
                 </div>
             </div>
         </section>';
+        $hamburger .= '<li><a class="button" href="'.$features_metabox->get_the_value('url').'"">
+                        '.$features_metabox->get_the_value('title').'
+                    </a></li>
+                    ';
     endwhile;
+    print '<ul class="menu hamburger visible-xs">'.$hamburger.'</ul>';
     print '</div>
     </div>';
     print '</div>';

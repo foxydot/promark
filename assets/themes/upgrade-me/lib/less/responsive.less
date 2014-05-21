@@ -1,3 +1,17 @@
+@import 'mixins';
+
+.nav-responsive ul, 
+.nav-responsive li,
+.nav-responsive li a {  
+    box-sizing:border-box;  
+    -moz-box-sizing:border-box;  
+    -webkit-box-sizing:border-box;  
+}  
+  
+
+.nav-responsive a#pull, .subnav-responsive a#subpull {  
+    display: none;  
+}
 /*
 Media Queries
 ---------------------------------------------------------------------------------------------------- */
@@ -49,24 +63,7 @@ Media Queries
     background-color: #fff;
   }
 
-  .content,
-  .content-sidebar-sidebar .content,
-  .content-sidebar-sidebar .content-sidebar-wrap,
-  .footer-widgets-1,
-  .footer-widgets-2,
-  .footer-widgets-3,
-  .sidebar-content-sidebar .content,
-  .sidebar-content-sidebar .content-sidebar-wrap,
-  .sidebar-primary,
-  .sidebar-secondary,
-  .sidebar-sidebar-content .content,
-  .sidebar-sidebar-content .content-sidebar-wrap,
-  .site-header .widget-area,
-  .site-inner,
-  .title-area,
-  .wrap {
-    width: 100%;
-  }
+
 
   .site-header .wrap {
     padding: 20px 0;
@@ -167,4 +164,190 @@ Media Queries
     width: 100%;
   }
 
+}
+
+
+@media only screen and (max-width : 500px) {  
+    .archive-page,
+    .content-sidebar #content,
+    .sidebar-content #content,
+    .sidebar-content-sidebar #content,
+    .sidebar-sidebar-content #content,
+    .content-sidebar-sidebar #content,
+    .sidebar-content-sidebar #content-sidebar-wrap,
+    .sidebar-sidebar-content #content-sidebar-wrap,
+    .content-sidebar-sidebar #content-sidebar-wrap,   
+    .footer-widgets-1,
+    .footer-widgets-2,
+    .footer-widgets-3,
+    .full-width-content #content,
+    #footer .creds,
+    #footer .gototop,
+    #footer-widgets .wrap,
+    #header .widget-area,
+    #title-area,
+    #wrap {
+      width: 100% !important;
+      float: none;
+    }
+    
+    .sidebar,.sidebar-secondary {
+      display: none;
+    }
+  .wrap .onecol,
+  .wrap .twocol, 
+  .wrap .threecol, 
+  .wrap .fourcol, 
+  .wrap .fivecol, 
+  .wrap .sixcol, 
+  .wrap .sevencol, 
+  .wrap .eightcol, 
+  .wrap .ninecol, 
+  .wrap .tencol, 
+  .wrap .elevencol, 
+  .wrap .twelvecol {
+  width: auto;
+  float: none;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  }
+  .nav-primary  {
+    float: none;
+    display: block;
+  }
+  .nav-responsive {
+    border-bottom: 0;
+    ul {
+      display: none;
+      height: auto;
+    }
+    a#pull {
+      display: inline-block;
+      width: 100%;
+      position: relative;
+      text-indent: 20px;
+      background: @ltgrey;
+      min-height: 48px;
+      padding-top: 14px;
+      position: relative;
+      > strong {
+        color: #fff;
+        text-decoration: none;
+        text-shadow:1px 1px 1px rgba(0, 0, 0, 0.78);
+        font-size: 14px;
+      }
+      ul#mobile_menu {
+        margin-top: 14px;
+        li{
+          display: block;
+          list-style: none;
+          padding: 0;
+          a{
+            background: @blue;
+            color: @white;
+            display: block;
+            width: 100%;
+            padding: 0.5em;
+          }
+          a:hover{
+            background: @medgrey;
+          }
+          ul.sub-menu {
+            margin-top: 0;
+            display: block;
+            position: relative;
+            top: 0;
+            left: 0;
+            li {
+              display: block;
+              list-style: none;
+              a{
+                text-indent: 40px;
+                background: @ltgrey;
+              }
+              ul li{
+                a{
+                  text-indent: 60px;
+                }
+                ul li{
+                  a{
+                    text-indent: 80px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    a#pull:hover {
+      text-decoration: none;
+    }
+  }
+  
+  .nav-responsive a#pull:after {
+    content:"\f03A";
+    font-family: 'FontAwesome';
+    font-size: 2rem;
+    text-indent: 0;
+    color: @white;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    .border-radius(4px);
+    background: @blue;
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+  }      
+} 
+
+@media only screen and (max-width : 320px) {  
+    
+    h1 {
+      font-size: 24px;
+    }
+    
+    .taxonomy-description h1 {
+      margin: 0;
+    }
+    
+    h2,
+    h2 a,
+    h2 a:visited {
+      font-size: 18px;
+    }
+    
+    .widget-area h2,
+    .widget-area h2 a {
+      font-size: 14px;
+      margin: 0 0 5px;
+    }
+    
+    h3 {
+      font-size: 16px;
+    }
+    
+    h4 {
+      font-size: 14px;
+    }
+    
+    .taxonomy-description h1,
+    .widget-area h4 {
+      font-size: 14px;
+      padding: 9px 10px 8px;
+    }
+    
+        
+    h5 {
+      font-size: 12px;
+    }
+    
+    p {
+      font-size: 14px;
+    }
 }

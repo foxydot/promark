@@ -48,7 +48,7 @@ body .nav-primary ul.menu-primary > li.menu-item > a {
   color: #ffffff;
 }
 body .nav-primary ul.menu-primary > li.menu-item:hover > a {
-  color: #625bc3;
+  color: #00609c;
 }
 body .content-background {
   display: none;
@@ -129,6 +129,9 @@ h1.entry-title {
   border-radius: 0;
   padding: 0.8rem 0;
   text-align: center;
+}
+.hamburger li a.button {
+  display: block;
 }
 #hp-callout .widget {
   background: #012942;
