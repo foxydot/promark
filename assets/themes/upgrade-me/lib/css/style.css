@@ -5815,6 +5815,8 @@ Structure and Layout
   clear: both;
   padding-top: 40px;
   padding-top: 4rem;
+  padding-bottom: 48px;
+  padding-bottom: 4.8rem;
 }
 /* Column Widths and Positions
 --------------------------------------------- */
@@ -6900,6 +6902,9 @@ Site Footer
   font-size: 1.2rem;
   text-transform: uppercase;
 }
+.sidebar-primary section.gform_widget .gform_wrapper form .gform_body ul li textarea.medium {
+  height: 110px;
+}
 .sidebar-primary section.gform_widget .gform_wrapper form .gform_footer {
   margin: 0 0 2rem 0;
   padding: 0 1rem;
@@ -6951,6 +6956,13 @@ Site Footer
 .sidebar-primary section.widget.gc-testimonial-widget .testimonial-widget .client .name {
   font-weight: normal;
   font-style: normal;
+}
+.sidebar-primary section.widget_sp_image {
+  border: 0;
+  background: none;
+}
+.sidebar-primary section.push-down {
+  position: relative;
 }
 .gform_wrapper.gf_browser_gecko ul.gform_fields li.gfield div.ginput_complex span.ginput_left select,
 .gform_wrapper.gf_browser_gecko ul.gform_fields li.gfield div.ginput_complex span.ginput_right select,

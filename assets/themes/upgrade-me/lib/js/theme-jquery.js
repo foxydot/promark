@@ -66,6 +66,17 @@ jQuery(document).ready(function($) {
                     event.stopPropagation();
                 } );
             }
+            $('.sidebar-primary, .content-sidebar-wrap').addClass('equalize');
+            $('.equalize').equalHeightColumns();
+            $('.push-down').css('top',function(){
+                var parent_height = $(this).parent().height();
+                var initial_position = $(this).position();
+                var height = $(this).height();
+                console.log(parent_height);
+                console.log(initial_position.top);
+                console.log(height);
+                return parent_height - initial_position.top - height - 48;
+            });
 });
 jQuery( window ).resize(function($) {
     anchor_footer();
