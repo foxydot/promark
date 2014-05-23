@@ -115,12 +115,12 @@ if (!class_exists('MSDCustomCPT')) {
                 $this->project_class = new MSDProjectCPT();
                 register_activation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
                 register_deactivation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
-            }*/
+            }
             if(class_exists('MSDSyndicatedCPT')){
                 $this->syndicated_class = new MSDSyndicatedCPT();
                 register_activation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
                 register_deactivation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
-            }
+            }*/
             if(class_exists('MSDTeamCPT')){
                 $this->cpt_class = new MSDTeamCPT();
                 register_activation_hook( __FILE__, create_function('','flush_rewrite_rules();') );

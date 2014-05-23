@@ -137,6 +137,9 @@ h1.entry-title {
   background: #012942;
   margin: 0;
 }
+#hp-callout .widget .testimonial-widget {
+  width: 100% !important;
+}
 #hp-callout .widget .testimonial-widget h5 {
   display: none;
 }
@@ -144,7 +147,7 @@ h1.entry-title {
   width: 100%;
   padding: 0 15px;
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   text-align: center;
 }
 #hp-callout .widget .testimonial-widget .content p {
