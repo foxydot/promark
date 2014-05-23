@@ -137,6 +137,9 @@ h1.entry-title {
   background: #012942;
   margin: 0;
 }
+#hp-callout .widget .tcycle {
+  width: 100% !important;
+}
 #hp-callout .widget .testimonial-widget {
   width: 100% !important;
 }
