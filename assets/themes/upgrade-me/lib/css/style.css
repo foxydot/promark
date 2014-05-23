@@ -6748,6 +6748,9 @@ Site Footer
   display: inline-block;
   background-color: #00609c;
 }
+.pre-header .wrap .header-widget-area .green .readmore {
+  background-color: #c3d600;
+}
 .pre-header .wrap .search-form {
   display: inline-block;
   padding: 1rem 0 1rem 1rem;
@@ -6925,6 +6928,7 @@ Site Footer
   color: #ffffff;
   font-style: italic;
   font-size: 1.6rem;
+  line-height: 1.6;
 }
 .sidebar-primary section.widget.gc-testimonial-widget .testimonial-widget .content p.first-child:before {
   font-family: "Raleway", "Trebuchet MS", Calibri, sans-serif;
@@ -6936,6 +6940,7 @@ Site Footer
   width: 24px;
   margin: 12px 6px -12px 0;
   font-style: normal;
+  line-height: 0.6;
 }
 .sidebar-primary section.widget.gc-testimonial-widget .testimonial-widget .client {
   padding: 1.6rem;
