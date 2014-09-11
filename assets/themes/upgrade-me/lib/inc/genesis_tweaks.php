@@ -57,7 +57,8 @@ remove_action( 'genesis_entry_footer', 'genesis_post_meta' ); //remove the meta 
 add_filter( 'genesis_next_link_text', 'msdlab_older_link_text', 20);
 add_filter( 'genesis_prev_link_text', 'msdlab_newer_link_text', 20);
 /*** FOOTER ***/
-add_theme_support( 'genesis-footer-widgets', 3 ); //adds automatic footer widgets
+add_theme_support( 'genesis-footer-widgets', 1 ); //adds automatic footer widgets
+remove_action( 'genesis_before_footer', 'genesis_footer_widget_areas');
 
 remove_action('genesis_footer','genesis_do_footer'); //replace the footer
 add_action('genesis_footer','msdlab_do_social_footer');//with a msdsocial support one
