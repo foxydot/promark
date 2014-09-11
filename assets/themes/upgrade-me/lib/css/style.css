@@ -6803,6 +6803,10 @@ Site Footer
   padding: 0.5rem;
   background: #ffffff;
 }
+.site-footer .wrap .footer-left .widget img {
+  max-height: 40px;
+  margin: 0;
+}
 .site-footer .wrap .footer-right {
   text-align: right;
 }
