@@ -10,7 +10,7 @@ function msdlab_add_styles() {
     if(!is_admin()){
         //use cdn        
             wp_enqueue_style('bootstrap-style','//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css');
-            wp_enqueue_style('font-awesome-style','//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css',array('bootstrap-style'));
+            wp_enqueue_style('font-awesome-style','//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',array('bootstrap-style'));
         //use local
            // wp_enqueue_style('bootstrap-style',get_stylesheet_directory_uri().'/lib/bootstrap/css/bootstrap.css');
            // wp_enqueue_style('font-awesome-style',get_stylesheet_directory_uri().'/lib/font-awesome/css/font-awesome.css',array('bootstrap-style'));
